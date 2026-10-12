@@ -284,7 +284,7 @@ static void test_vecteur_reserve()
     VERIFIER(v.size() == 100);
     VERIFIER(v.back() == 100);
 
-    v.reserve(5); // plus petit : aucun effet
+    VERIFIER_EXCEPTION(v.reserve(5), out_of_range);
     VERIFIER(v.size() == 100);
     VERIFIER(v[50] == 51);
 
