@@ -67,4 +67,26 @@ void fileDE<T>::reserve(size_t maxCap)
     m_zero = 0; // ? comment faire pour que le zero soit a la meme place que dans le tableau d'avant
 }
 
+//Chanfe la taille de la file, reduit ou augmente et, si necessaire, reserve de l'espace (augmente la capacite)
+template <typename T>
+void fileDE<T>::resize(size_t dim)
+{
+    //reduire la taille
+    while (m_taille > dim)
+    {
+        delete m_debut[(m_zero + m_taille - 1) % m_cap];
+        --m_taille;
+    }
+
+    //reserver si necessaire
+    if (dim > m_cap)
+        reserve(dim);
+
+    //augmenter la taille
+    while (m_taille < dim)
+    {
+        m_debut[(m_zero + m_taille) % m_cap] = new T();
+        ++m_taille;
+    }
+}
 #endif //CODE_FILEDEIPL_H
