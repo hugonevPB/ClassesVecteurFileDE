@@ -49,4 +49,22 @@ fileDE<T>::fileDE(const fileDe& source) : fileDE(source.m_taille)
     for (size_t i = 0; i < source.m_taille; ++i)
         *m_debut[i] = source[i];
 }
+
+//Augmente la capacite maximale de la file
+template <typename T>
+void fileDE<T>::reserve(size_t maxCap)
+{
+    if (maxCap <= m_cap)
+        throw std::out_of_range("Capacite invalide");
+
+    T** debut = new T*[maxCap];
+    for (size_t i = 0; i < m_taille; ++i)
+        debut[i] = m_debut[(m_zero + i) % m_cap];
+
+    delete[] m_debut;
+    m_debut = debut;
+    m_cap = maxCap;
+    m_zero = 0; // ? comment faire pour que le zero soit a la meme place que dans le tableau d'avant
+}
+
 #endif //CODE_FILEDEIPL_H
