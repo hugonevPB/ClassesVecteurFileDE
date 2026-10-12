@@ -168,7 +168,7 @@ std::ostream& operator<<(std::ostream& out,const fileDE<T>& d)
 }
 
 //inclusion ici du fichier du code à ajouter
-#include "FileDeIpl.h"
+#include "FileDEIpl.h"
 
 
 #endif // fileDE_h
