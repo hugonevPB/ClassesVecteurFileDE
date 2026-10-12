@@ -6,6 +6,15 @@
 #define CODE_FILEDEIPL_H
 #include "FileDe.h"
 
+/*
+Question: Il n'y a pas d'itérateurs pour cette structure, savez-vous pourquoi ?
+La raison de pourquoi nous n'avons pas d'iterateur dans cette structure est a cause que le dernier element de cette structure peut se trouver au millieu de la file.
+par exemple, si nous avons les element 0 a 4 en position 7 a 11 du tableau, si nous faisions iterateur++ pour acceder au prochain element, l'element 5 qui se trouve
+a la position 0 du tableau, nous n'allons pas le trouver, car allors l'iterateur allait pointer vers la position 12 du tableau, qui n'existe pas.
+Un iterateur ne fonctionerait pas dans le cas de cette classe, vue que la fileDE est un tableau circulaire, donc les elements peuvent ne pas etre contigues dans la memoire
+contrairement aux Vecteurs.
+ */
+
 //Get un element de la file sans verification des bornes
 template<typename  T>
 T& fileDE<T>::operator[](size_t index)
